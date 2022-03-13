@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LOGIN</title>
+</head>
+<body>
+<div>
+    <form method="post" action="/login">
+        <input type="text" name="username">
+        <input type="password" name="password">
+        <input type="submit" value="login"/>
+    </form>
+</div>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        let btn = document.querySelector('input[type=submit]')
+        btn.addEventListener('click', async function (e) {
+            e.preventDefault()
+            let username = document.querySelector('input[name=username]')
+            let password = document.querySelector('input[name=password]')
+            let response = await fetch('/login', {
+                method: "POST",
+                body: new FormData(document.querySelector('form'))
+            })
+            let response_json = await response.json()
+            if (response_json.success) {
+                let body = document.querySelector('body')
+                body.style.backgroundColor = 'green'
+                body.innerHTML = response_json.message
+
+            }
+        })
+    })
+</script>
+</body>
+</html>
