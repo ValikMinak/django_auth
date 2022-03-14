@@ -16,7 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from spa_auth.views import index
+
 urlpatterns = [
+    path('', index),
     path('admin/', admin.site.urls),
-    path('api/', include('django_auth.urls'))
+    path('api/', include('spa_auth.urls'))
 ]

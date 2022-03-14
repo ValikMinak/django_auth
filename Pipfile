@@ -8,8 +8,11 @@ fastapi = "*"
 django = "*"
 djangorestframework = "*"
 mysqlclient = "*"
+pyjwt = "*"
+django-cors-headers = "*"
+pyotp = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.10"
+python_version = "3.6.9"

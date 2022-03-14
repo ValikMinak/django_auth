@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="login">Login</button>
+<button id="auth">Auth</button>
+<button id="get_refresh">New Refresh</button>
+
+<script type="text/javascript">
+
+    (function () {
+        let login = document.getElementById("login")
+        let auth = document.getElementById("auth")
+        let get_refresh = document.getElementById("get_refresh")
+        login.addEventListener('click', function (e) {
+            let link = document.location
+            fetch(link + 'api/login', {
+                method: 'post',
+                body: JSON.stringify({
+                    "first_name": 'a',
+                    "last_name": 'a',
+                    "email": 'hey@gmail.com',
+                    "password": 'a',
+                    "password_confirm": 'a',
+                }),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    {#'Authorization': "Bearer"#}
+                }
+            }).then((res) => {
+                console.log(res)
+            })
+        })
+
+        auth.addEventListener('click', function (e) {
+            let link = document.location
+            fetch(link + 'api/user', {
+                method: 'get',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo4LCJleHAiOjE2NDcxOTI5NDcsImlhdCI6MTY0NzE5MjkxN30.q88pvVZlMVdPXEeNkHzzVAMr4Hpv3ebU5WG2vANw8wE"
+                }
+            }).then((res) => {
+                console.log(res)
+            })
+        })
+
+        get_refresh.addEventListener('click', function (e) {
+            let link = document.location
+            fetch(link + 'api/refresh', {
+                method: 'post',
+                body: JSON.stringify({
+                    "email": 'hey@gmail.com',
+                    "password": 'a',
+                }),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                }
+            }).then((res) => {
+                console.log(res)
+            })
+        })
+    })()
+</script>
+</body>
+</html>
